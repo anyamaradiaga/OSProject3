@@ -109,7 +109,7 @@ syscall kputc(uchar c)
     regptr = (struct pl011_uart_csreg *)0x3F201000;
 
     // TODO: Check UART flags register.
-    //       Once the Transmitter FIFO is not full, send character c.
+    //       do while loop until the receiver gets something and, send character c.
         while(regptr->fr & PL011_FR_TXFF); //checking if there's an input
         regptr->dr = (int)(c);
         return(int)c; //return c
